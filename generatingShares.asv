@@ -1,0 +1,77 @@
+
+function [s1, s2, s3, s4, s5, s6, s7, s8, s9] = generatingShares(a, m, n, o, m1, m2, m3)
+
+
+s1 = zeros(m,  n);
+s2 = zeros(m,  n);
+s3 = zeros(m,  n);
+s4 = zeros(m,  n);
+s5 = zeros(m,  n);
+s6 = zeros(m,  n);
+s7 = zeros(m,  n);
+s8 = zeros(m,  n);
+s9 = zeros(m,  n);
+
+red=a(:,:,1);
+green=a(:,:,2);
+blue=a(:,:,3);
+
+for i=1:m
+    for j=1:n
+        x=red(i,j);
+        r1=mod(x,m1);
+        r2=mod(x,m2);
+        r3=mod(x,m3);
+        s1(i,j)=r1;
+        s2(i,j)=r2;
+        s3(i,j)=r3;
+    end
+end
+
+for i=1:m
+    for j=1:n
+        x=green(i,j);
+        r1=mod(x,m1);
+        r2=mod(x,m2);
+        r3=mod(x,m3);
+        s4(i,j)=r1;
+        s5(i,j)=r2;
+        s6(i,j)=r3;
+    end
+end
+
+for i=1:m
+    for j=1:n
+        x=blue(i,j);
+        r1=mod(x,m1);
+        r2=mod(x,m2);
+        r3=mod(x,m3);
+        s7(i,j)=r1;
+        s8(i,j)=r2;
+        s9(i,j)=r3;
+    end
+end
+
+
+disp('share creation complete');
+disp('share 1');
+figure; subplot(3,3,1);
+imshow(s1), title('SHARE 1');
+disp('share 2');
+subplot(3,3,2);
+imshow(s2), title('SHARE 2');
+disp('share 3');
+figure; imshow(s3);
+disp('share 4');
+figure; imshow(s4);
+disp('share 5');
+figure; imshow(s5);
+disp('share 6');
+figure; imshow(s6);
+disp('share 7');
+figure; imshow(s7);
+disp('share 8');
+figure; imshow(s8);
+disp('share 9');
+figure; imshow(s9);
+end

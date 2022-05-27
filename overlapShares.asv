@@ -1,0 +1,58 @@
+
+
+function [b] = overlapShares(s1, s2, s3, s4, s5, s6, s7, s8, s9, m, n, o, m1, m2, m3)
+
+M=m1*m2*m3;
+a1=M/m1;
+a2=M/m2;
+a3=M/m3;
+red=zeros(m,n);
+green=zeros(m,n);
+blue=zeros(m,n);
+
+[d, q, a, b, f] = extendedEuclidean_forward(m1,a1);
+
+[x, y] = extendedEuclidean_backSubstitution (d, q, a, b, f);
+t1=y;
+
+[d, q, a, b, f] = extendedEuclidean_forward(m2,a2);
+[x, y] = extendedEuclidean_backSubstitution (d, q, a, b, f);
+t2=y;
+
+[d, q, a, b, f] = extendedEuclidean_forward(m3,a3);
+[x, y] = extendedEuclidean_backSubstitution (d, q, a, b, f);
+t3=y;
+
+ for i=1:m
+    for j=1:n
+       
+        red(i,j)=mod((a1*t1*s1(i,j)+a2*t2*s2(i,j)+a3*t3*s3(i,j)),M);
+        
+    end
+ end
+
+ for i=1:m
+    for j=1:n
+       
+        green(i,j)=mod((a1*t1*s4(i,j)+a2*t2*s5(i,j)+a3*t3*s6(i,j)),M);
+        
+    end
+ end
+
+ for i=1:m
+    for j=1:n
+       
+        blue(i,j)=mod((a1*t1*s7(i,j)+a2*t2*s8(i,j)+a3*t3*s9(i,j)),M);
+        
+    end
+ end
+
+b=cat(3,red,green,blue);
+disp('overlapped image');
+figure; title('final image');imshow(b);
+b=im2double(b/255);
+b=uint8(round(b*255));
+
+
+
+end
